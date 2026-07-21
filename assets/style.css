@@ -101,7 +101,7 @@ button{ font-family:inherit; }
 #boot .boot-depth{ font-size:34px; font-weight:700; letter-spacing:.04em; color:var(--accent); font-variant-numeric:tabular-nums; }
 #boot .boot-bar{ width:min(260px,70vw); height:2px; background:var(--hairline); position:relative; overflow:hidden; }
 #boot .boot-bar span{ position:absolute; inset:0; width:0%; background:var(--accent); transition:width .1s linear; }
-#boot .boot-skip{ margin-top:8px; font-size:11px; color:var(--ink-faint); letter-spacing:.08em; background:none; border:none; cursor:pointer; text-decoration:underline; }
+#boot .boot-skip{ margin-top:8px; font-size:11px; color:var(--ink-faint); letter-spacing:.08em; background:none; border:none; cursor:pointer; text-decoration:underline; display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 10px; }
 
 /* ---------- header ---------- */
 header.site-head{
@@ -350,7 +350,7 @@ footer.site-foot{
   display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
 }
 .foot-links{ display:flex; gap:18px; flex-wrap:wrap; }
-.foot-links a{ font-size:12px; color:var(--ink-muted); text-decoration:none; }
+.foot-links a{ font-size:12px; color:var(--ink-muted); text-decoration:none; display:inline-flex; align-items:center; min-height:44px; }
 .foot-links a:hover{ color:var(--accent); }
 .version-badge{
   font-size:11px; letter-spacing:.06em; color:var(--ink-faint); border:1px solid var(--hairline);
