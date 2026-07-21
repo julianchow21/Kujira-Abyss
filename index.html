@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ABYSS, the Kujira brand site</title>
+<meta name="description" content="ABYSS is the brand site for Kujira, a solo-built family of small, sharp web apps. Descend through Collectibles, Portfolio, Trading and Journal.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 40'%3E%3Cpath fill='%2335f0b4' d='M32 2 C28 10 24 16 24 16 C18 12 10 12 4 18 C10 24 18 26 24 22 C24 30 22 38 22 38 L32 30 L42 38 C42 38 40 30 40 22 C46 26 54 24 60 18 C54 12 46 12 40 16 C40 16 36 10 32 2 Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@700&family=Fraunces:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/style.css?v=20260721f">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- shared SVG sprite: whale fluke mark -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="whale-mark" viewBox="0 0 64 40">
+    <path d="M32 2 C28 10 24 16 24 16 C18 12 10 12 4 18 C10 24 18 26 24 22 C24 30 22 38 22 38 L32 30 L42 38 C42 38 40 30 40 22 C46 26 54 24 60 18 C54 12 46 12 40 16 C40 16 36 10 32 2 Z" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<canvas id="particles" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<div id="boot" role="dialog" aria-label="Boot sequence">
+  <svg class="boot-mark" viewBox="0 0 64 40" aria-hidden="true"><use href="#whale-mark"></use></svg>
+  <div class="boot-line">Descent initiated</div>
+  <div class="boot-depth" aria-live="polite">0m</div>
+  <div class="boot-bar"><span></span></div>
+  <button type="button" class="boot-skip">skip</button>
+</div>
+
+<header class="site-head">
+  <a class="brand" href="#hero">
+    <svg viewBox="0 0 64 40" style="color:var(--accent)" aria-hidden="true"><use href="#whale-mark"></use></svg>
+    <span class="brand-name">KUJIRA <em>/ ABYSS</em></span>
+  </a>
+  <span class="depth-readout" id="depth-readout">DEPTH 0m</span>
+  <nav class="site-nav" aria-label="Section navigation">
+    <a href="#collectibles">Collectibles</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#trading">Trading</a>
+    <a href="#journal">Journal</a>
+    <a href="#log">Depth log</a>
+  </nav>
+  <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+</header>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section id="hero-pin" data-zone="surface" aria-label="Introduction">
+    <div class="sticky" id="hero">
+      <p class="hero-line">Every app starts on the surface.</p>
+      <p class="hero-line">Kujira builds <em>down</em>, not out.</p>
+      <p class="hero-line">Four ventures. One founder. No framework.</p>
+
+      <div class="hero-final">
+        <svg class="hero-mark" viewBox="0 0 64 40" style="color:var(--accent)" aria-hidden="true"><use href="#whale-mark"></use></svg>
+        <h1 class="hero-word">Welcome to the <em>Abyss</em></h1>
+        <p class="hero-tag">Kujira is a personal parent brand. One founder in Singapore, building small, sharp, self-contained apps and sending each one <span class="serif">as deep as it needs to go</span>.</p>
+
+        <div class="stat-row" aria-label="Kujira in numbers">
+          <div class="stat"><div class="num" data-target="4" data-decimals="0">0</div><div class="cap">Ventures shipped</div></div>
+          <div class="stat"><div class="num" data-target="0" data-decimals="0">0</div><div class="cap">Frameworks used</div></div>
+          <div class="stat"><div class="num" data-target="1" data-decimals="0">0</div><div class="cap">Founder</div></div>
+          <div class="stat"><div class="num" data-target="100" data-decimals="0" data-suffix="%">0</div><div class="cap">Vanilla JS</div></div>
+        </div>
+
+        <div class="scroll-cue"><span>begin the descent</span><span class="chev" aria-hidden="true"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MANIFESTO ================= -->
+  <section id="manifesto" data-zone="surface">
+    <div class="wrap">
+      <div class="label"><span class="dot"></span><span class="num">00</span><span class="rule"></span><span class="cap">Manifesto</span></div>
+      <div class="manifesto-grid">
+        <div class="manifesto-thesis">
+          <p>Kujira, <span class="serif">japanese for whale</span>, is what happens when one person keeps building tools for their own life and refuses to stop shipping them.</p>
+          <p>No investors, no roadmap meetings, no team standup. Just a founder who wanted better software for his own collection, his own money, his own trading habit and his own notes, and decided the fastest way to get it was to build it himself.</p>
+        </div>
+        <div class="manifesto-body">
+          <p class="body-copy">Every Kujira app is a single-page site. No framework, no bundler, no build step. Hand-written HTML, CSS and JavaScript, shipped straight to GitHub Pages or Cloudflare Pages. That is not a limitation Julian works around, it is the method. A framework buys velocity on a team. Solo, against four separate apps, the tax of learning and maintaining someone else's abstraction costs more than it saves.</p>
+          <p class="body-copy">The constraint forces a kind of honesty. If a feature is slow, there is no library to blame. If a screen is confusing, there is no design system hiding the decision. Every line is a decision Julian made and can explain. That is the vanilla thesis, and it is the reason four very different apps, tracking cards, net worth, a single stock, and a private journal, can all trace back to the same hand.</p>
+          <p class="body-copy">Abyss is the map of that work. Four ventures, four depths, one descent. Scroll down.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COLLECTIBLES ================= -->
+  <section class="venture" id="collectibles" data-zone="sunlight">
+    <div class="wrap">
+      <div class="venture-head">
+        <div>
+          <div class="label"><span class="dot"></span><span class="num">01</span><span class="rule"></span><span class="cap">Sunlight zone</span></div>
+          <h2 class="section-title">Collect<em>ibles</em></h2>
+        </div>
+        <div class="venture-depth">
+          <div class="zone-meta">Epipelagic</div>
+          <div class="range">0m &rarr; 200m</div>
+        </div>
+      </div>
+
+      <div class="venture-body">
+        <div class="venture-copy">
+          <p class="lede">A Pokemon card collectibles tracker, built as a single-page PWA. This is where the whole brand started, close enough to the surface to still see daylight through the water.</p>
+          <p class="body-copy">Collectibles tracks singles, graded slabs and sealed product side by side, feeds an eBay listing pipeline, keeps a record of every sale, and pulls live market pricing from TCGdex and PricePerToken so a valuation is never more than a page refresh stale. It runs on vanilla JS with a Supabase backend, fronted by a Cloudflare Worker proxy for the pricing calls.</p>
+          <ul class="facts">
+            <li>Singles, graded slabs and sealed product tracked in one view</li>
+            <li>eBay listing pipeline and sales record built in</li>
+            <li>Live pricing from TCGdex and PricePerToken</li>
+            <li>Currently v3.26</li>
+          </ul>
+          <div class="venture-links">
+            <a class="pill-link" href="https://julianchow21.github.io/Kujira-Collectibles/" target="_blank" rel="noopener">Open Collectibles &#8599;</a>
+          </div>
+        </div>
+
+        <div class="venture-widget">
+          <div class="widget" id="coll-widget">
+            <div class="widget-head">
+              <span class="widget-title">Collection miniature</span>
+              <span class="widget-hint">click a card, try the filters</span>
+            </div>
+            <div class="coll-toolbar" role="group" aria-label="Filter collection">
+              <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+              <button type="button" class="chip" data-filter="single" aria-pressed="false">Singles</button>
+              <button type="button" class="chip" data-filter="graded" aria-pressed="false">Graded</button>
+              <button type="button" class="chip" data-filter="sealed" aria-pressed="false">Sealed</button>
+            </div>
+            <div class="coll-grid" role="list" aria-label="Cards"></div>
+            <div class="slab-panel"></div>
+            <div class="coll-summary">
+              <div><span class="cap">Roll-up value</span><br><span class="val coll-value">S$0</span></div>
+              <div><span class="cap coll-count">0 items</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PORTFOLIO ================= -->
+  <section class="venture" id="portfolio" data-zone="twilight">
+    <div class="wrap">
+      <div class="venture-head">
+        <div>
+          <div class="label"><span class="dot"></span><span class="num">02</span><span class="rule"></span><span class="cap">Twilight zone</span></div>
+          <h2 class="section-title">Port<em>folio</em></h2>
+        </div>
+        <div class="venture-depth">
+          <div class="zone-meta">Mesopelagic</div>
+          <div class="range">200m &rarr; 1,000m</div>
+        </div>
+      </div>
+
+      <div class="venture-body">
+        <div class="venture-copy">
+          <p class="lede">A personal net worth tracker. Past the sunlight zone, the light thins and the stakes go up, this is where the money question gets asked properly.</p>
+          <p class="body-copy">Portfolio pulls together SGX and US stocks, crypto, real estate, cash and CPF, Singapore's state retirement fund, and reports all of it in one currency, SGD. It carries salary tracking, profit and loss, and a FIRE projection, and insurance policies live inside it as a tab rather than a separate app. Backend is Google Sheets via Apps Script, because a spreadsheet is a perfectly good database when you are the only user.</p>
+          <ul class="facts">
+            <li>SGX, US, crypto, real estate, cash and CPF in one SGD figure</li>
+            <li>Salary tracking, profit and loss, FIRE projection</li>
+            <li>Insurance policies as a tab, not a separate app</li>
+            <li>Currently v2.43</li>
+          </ul>
+        </div>
+
+        <div class="venture-widget">
+          <div class="widget" id="pf-widget">
+            <div class="widget-head">
+              <span class="widget-title">Allocation miniature</span>
+              <span class="widget-hint">drag a slider, it redistributes</span>
+            </div>
+            <div class="alloc-rows"></div>
+            <div class="alloc-bar" aria-hidden="true"></div>
+            <div class="pf-empty" style="display:none;"></div>
+            <div class="pf-figures">
+              <div class="fig"><div class="num pf-networth">S$0</div><div class="cap">Net worth (illustrative)</div></div>
+              <div class="fig"><div class="num pf-years">n/a</div><div class="cap">Years to FIRE</div></div>
+            </div>
+            <div class="pf-controls">
+              <label>Monthly savings<input type="range" id="pf-savings" min="500" max="8000" step="100" value="2500"><span id="pf-savings-out"></span></label>
+              <label>Expected return<input type="range" id="pf-return" min="2" max="9" step="1" value="6"><span id="pf-return-out"></span></label>
+            </div>
+            <canvas class="pf-canvas" style="width:100%;height:120px;"></canvas>
+            <div class="widget-hint">Dashed line marks an illustrative S$2,000,000 FIRE target. Synthetic figures, not Julian's real data.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRADING ================= -->
+  <section class="venture" id="trading" data-zone="midnight">
+    <div class="wrap">
+      <div class="venture-head">
+        <div>
+          <div class="label"><span class="dot"></span><span class="num">03</span><span class="rule"></span><span class="cap">Midnight zone</span></div>
+          <h2 class="section-title">Trad<em>ing</em></h2>
+        </div>
+        <div class="venture-depth">
+          <div class="zone-meta">Bathypelagic</div>
+          <div class="range">1,000m &rarr; 4,000m</div>
+        </div>
+      </div>
+
+      <div class="venture-body">
+        <div class="venture-copy">
+          <p class="lede">A single-file day trading dashboard, no daylight left, everything moves fast and the read has to be instant.</p>
+          <p class="body-copy">Trading is focused on one stock, Micron Technology under ticker MU. It draws a live price feed and a candlestick chart, then layers VWAP, EMA, RSI and MACD on top. The data is read-only, there is no order execution here, it is a lens on the market, not a way to touch it.</p>
+          <ul class="facts">
+            <li>Single-file dashboard, focused on MU only</li>
+            <li>Candlestick chart with VWAP, EMA, RSI and MACD</li>
+            <li>Read-only market data, no order execution</li>
+          </ul>
+        </div>
+
+        <div class="venture-widget">
+          <div class="widget" id="tr-widget">
+            <div class="widget-head">
+              <span class="widget-title">MU miniature, synthetic feed</span>
+              <span class="widget-hint">toggle overlays below</span>
+            </div>
+            <div class="tr-price"><span class="p">$0.00</span><span class="chg">+0.00 (+0.00%)</span></div>
+            <div class="tr-toolbar" role="group" aria-label="Toggle indicators">
+              <label><input type="checkbox" data-indicator="vwap" checked> VWAP</label>
+              <label><input type="checkbox" data-indicator="ema" checked> EMA 9 / 21</label>
+              <label><input type="checkbox" data-indicator="rsi"> RSI 14</label>
+              <label><input type="checkbox" data-indicator="macd"> MACD</label>
+            </div>
+            <canvas class="tr-canvas"></canvas>
+            <div class="tr-sub-row tr-rsi-row"><div class="tr-sub-label">RSI 14</div><canvas class="tr-sub tr-rsi"></canvas></div>
+            <div class="tr-sub-row tr-macd-row"><div class="tr-sub-label">MACD (12, 26, 9)</div><canvas class="tr-sub tr-macd"></canvas></div>
+            <div class="widget-hint">Seeded synthetic OHLC, deterministic, not live market data.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= JOURNAL ================= -->
+  <section class="venture" id="journal" data-zone="abyss">
+    <div class="wrap">
+      <div class="venture-head">
+        <div>
+          <div class="label"><span class="dot"></span><span class="num">04</span><span class="rule"></span><span class="cap">The abyss</span></div>
+          <h2 class="section-title">Journ<em>al</em></h2>
+        </div>
+        <div class="venture-depth">
+          <div class="zone-meta">Abyssopelagic</div>
+          <div class="range">4,000m &rarr; 6,000m</div>
+        </div>
+      </div>
+
+      <div class="venture-body">
+        <div class="venture-copy">
+          <p class="lede">A personal documents app. This is the deepest layer, the one nobody else reads, which is exactly why it is the one built with the most care.</p>
+          <p class="body-copy">Journal is single user by design, cloud-primary on Supabase rather than local-first, with a block editor and realtime sync so a thought written on one device is already there on the next. It is live at kujira-journal.pages.dev. Of the four ventures it asks the least of the visitor and the most of the founder, there is nowhere to hide a bad sentence when you are the only reader.</p>
+          <ul class="facts">
+            <li>Single user, cloud-primary on Supabase</li>
+            <li>Block editor with realtime sync</li>
+            <li>Live at kujira-journal.pages.dev</li>
+          </ul>
+          <div class="venture-links">
+            <a class="pill-link" href="https://kujira-journal.pages.dev" target="_blank" rel="noopener">Open Journal &#8599;</a>
+          </div>
+        </div>
+
+        <div class="venture-widget">
+          <div class="widget" id="jr-widget">
+            <div class="widget-head">
+              <span class="widget-title">Editor miniature</span>
+              <span class="jr-sync"><span class="dot"></span><span class="label">Synced</span></span>
+            </div>
+            <div class="jr-toolbar" role="group" aria-label="Add block">
+              <button type="button" class="chip" data-add="text">+ Text</button>
+              <button type="button" class="chip" data-add="h1">+ Heading</button>
+              <button type="button" class="chip" data-add="quote">+ Quote</button>
+              <button type="button" class="chip" data-add="check">+ Checklist</button>
+            </div>
+            <div class="jr-doc"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DEPTH LOG (light beat) ================= -->
+  <section id="log" data-zone="floor">
+    <div class="wrap on-light">
+      <div class="label on-light"><span class="dot"></span><span class="num">05</span><span class="rule"></span><span class="cap">Depth log</span></div>
+      <h2 class="section-title">The build history</h2>
+      <p class="lede">A logbook, not a highlight reel. Entries are ordered by how deep they sit in the descent, not by date, each one is a real milestone in how Kujira got built.</p>
+
+      <div class="log-entries">
+        <div class="log-entry">
+          <div><div class="tag">Entry 01</div><div class="ver">The vanilla thesis</div></div>
+          <div><h3>No framework, on purpose</h3><p>Every Kujira app is hand-written HTML, CSS and JavaScript. No React, no build step, no node_modules. The rule was set before Collectibles existed and has held for all four ventures since.</p></div>
+        </div>
+        <div class="log-entry">
+          <div><div class="tag">Entry 02</div><div class="ver">Collectibles v1.0 &rarr; v3.26</div></div>
+          <div><h3>Where the brand started</h3><p>Began as a plain list of singles. Grew a grading module, condition tracking, an eBay listing pipeline and a sales record, then live pricing from TCGdex and PricePerToken through a Cloudflare Worker proxy. Now a full PWA on Supabase.</p></div>
+        </div>
+        <div class="log-entry">
+          <div><div class="tag">Entry 03</div><div class="ver">Portfolio v1.0 &rarr; v2.43</div></div>
+          <div><h3>The money question, answered once</h3><p>Started as a spreadsheet Julian was already keeping. Rebuilt as an app on top of the same Google Sheet via Apps Script, so SGX, US stocks, crypto, real estate, cash and CPF finally sit in one SGD figure with salary, P&amp;L and a FIRE projection attached.</p></div>
+        </div>
+        <div class="log-entry">
+          <div><div class="tag">Entry 04</div><div class="ver">Trading, single file</div></div>
+          <div><h3>One stock, no build step</h3><p>A day trading dashboard for MU, shipped as one file. Candlestick chart, VWAP, EMA, RSI and MACD, entirely read-only. No order execution was ever in scope.</p></div>
+        </div>
+        <div class="log-entry">
+          <div><div class="tag">Entry 05</div><div class="ver">Journal, live</div></div>
+          <div><h3>Cloud-primary from day one</h3><p>The newest venture and the only one built cloud-first from the start rather than migrated to it. Single user, a block editor, realtime sync on Supabase, live at kujira-journal.pages.dev.</p></div>
+        </div>
+        <div class="log-entry">
+          <div><div class="tag">Entry 06</div><div class="ver">Abyss, this site</div></div>
+          <div><h3>The brand gets a home</h3><p>Kujira never had a site, a mark or a stated identity before this one. Abyss is that identity, built the same way as everything else it describes, one page, vanilla, self-contained.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FLOOR / FOOTER ================= -->
+  <section id="floor" data-zone="floor">
+    <div class="wrap">
+      <div class="label"><span class="dot"></span><span class="num">06</span><span class="rule"></span><span class="cap">Hadal zone</span></div>
+      <h2 class="section-title">Below the <em>floor</em></h2>
+      <p class="lede floor-copy">The hadal zone, the trenches, is the deepest water there is. Kujira has four ventures mapped so far. Whatever comes next files here, when it exists and not before.</p>
+    </div>
+    <div class="wrap">
+      <footer class="site-foot">
+        <a class="brand" href="#hero">
+          <svg viewBox="0 0 64 40" style="color:var(--accent);width:22px;height:15px;" aria-hidden="true"><use href="#whale-mark"></use></svg>
+          <span class="brand-name" style="font-size:14px;">KUJIRA</span>
+        </a>
+        <div class="foot-links">
+          <a href="https://julianchow21.github.io/Kujira-Collectibles/" target="_blank" rel="noopener">Collectibles &#8599;</a>
+          <a href="https://kujira-journal.pages.dev" target="_blank" rel="noopener">Journal &#8599;</a>
+          <a href="#hero">Back to the surface</a>
+        </div>
+        <span class="version-badge">v1.0 (21/07/2026)</span>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<script src="./assets/data.js?v=20260721b"></script>
+<script src="./assets/app.js?v=20260721c"></script>
+<script src="./assets/collectibles.js?v=20260721b"></script>
+<script src="./assets/portfolio.js?v=20260721b"></script>
+<script src="./assets/trading.js?v=20260721b"></script>
+<script src="./assets/journal.js?v=20260721b"></script>
+</body>
+</html>
