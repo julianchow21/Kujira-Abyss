@@ -32,9 +32,13 @@ The name Abyss, the whale-fluke mark, the tagline, the colour and type system an
 
 ## Known open items
 
-- four interactive elements sit under the 44px mobile touch target bar, three footer links and the boot skip button
-- `prefers-reduced-motion` gating is written but has never been observed running, the browser tooling could not emulate it
-- the ambient particle animation has never been seen animating, the preview pane's animation frames were stalled
+- two in-content venture links ("Open Collectibles", "Open Journal") measure 39px high on desktop, under the 44px bar. At 375px every visible link and button measures 44px or more, so this bites only on small desktop pointers, not on touch
+- the two items below were verified on 28/07/2026 and are no longer open, kept here as the record
+
+### Verified 28/07/2026
+
+- the ambient particle field animates correctly. It is gated to viewports 900px and wider by `MIN_WIDTH` in `setupParticles`, which is why earlier passes in a narrower preview pane saw a hidden canvas rather than a stalled one. Measured at 1280px: canvas sized 2240x1400 at dpr 1.75, painted pixels 1819 then 1871, and the pixel data changed between samples. At 375px the canvas is correctly `display:none`
+- `prefers-reduced-motion` gating works. Verified against a scratchpad copy with `matchMedia` forced to report reduce, the boot overlay dismissed immediately and released the body lock, the hero crossfade lines were set to `display:none` with the final line latched on, the particle canvas stayed hidden with zero painted pixels and no animation loop, and the four stat counters rendered their target values with no count-up. The CSS side (three `@media (prefers-reduced-motion: reduce)` blocks at `assets/style.css:34`, `:197`, `:401`) was read, not exercised, the rig forces the JS media query only
 
 ## Conventions
 
