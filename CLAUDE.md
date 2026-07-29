@@ -40,6 +40,11 @@ The name Abyss, the whale-fluke mark, the tagline, the colour and type system an
 - the ambient particle field animates correctly. It is gated to viewports 900px and wider by `MIN_WIDTH` in `setupParticles`, which is why earlier passes in a narrower preview pane saw a hidden canvas rather than a stalled one. Measured at 1280px: canvas sized 2240x1400 at dpr 1.75, painted pixels 1819 then 1871, and the pixel data changed between samples. At 375px the canvas is correctly `display:none`
 - `prefers-reduced-motion` gating works. Verified against a scratchpad copy with `matchMedia` forced to report reduce, the boot overlay dismissed immediately and released the body lock, the hero crossfade lines were set to `display:none` with the final line latched on, the particle canvas stayed hidden with zero painted pixels and no animation loop, and the four stat counters rendered their target values with no count-up. The CSS side (three `@media (prefers-reduced-motion: reduce)` blocks at `assets/style.css:34`, `:197`, `:401`) was read, not exercised, the rig forces the JS media query only
 
+### Verified 29/07/2026
+
+- independent headless pass (playwright-core over `file://`, desktop, reduced-motion and mobile contexts, 38 assertions): boot auto-dismisses, hero crossfade reveals, stat counters land, depth readout tracks scroll, all four miniatures interactive (filters, slab panel, sliders, FIRE maths, indicator toggles, block editing), zero console errors, no horizontal overflow at 1440px or 390px, footer links, boot skip, nav toggle and nav links all at 44px. Confirms the 28/07 particle and reduced-motion findings from real input
+- v1.2 fix: the mobile nav drawer covered its own toggle, the fixed-positioned drawer painted above the static button, so an open drawer could not be closed via the hamburger (proven from the true input path). Fixed by stacking the toggle at `position:relative; z-index:1` inside the header's stacking context, re-verified by real click with the drawer open, `aria-expanded` flips correctly
+
 ## Conventions
 
 Version badge in the page footer, bumped in the same edit as any change, matching the commit version. British English in all visible copy, no em-dashes and no semicolons. Build history sits in the Depth log section, keep it truthful.
