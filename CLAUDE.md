@@ -32,8 +32,7 @@ The name Abyss, the whale-fluke mark, the tagline, the colour and type system an
 
 ## Known open items
 
-- two in-content venture links ("Open Collectibles", "Open Journal") measure 39px high on desktop, under the 44px bar. At 375px every visible link and button measures 44px or more, so this bites only on small desktop pointers, not on touch
-- the two items below were verified on 28/07/2026 and are no longer open, kept here as the record
+- the items below were verified on 28/07/2026, 29/07/2026 and 01/08/2026 and are no longer open, kept here as the record
 
 ### Verified 28/07/2026
 
@@ -44,6 +43,10 @@ The name Abyss, the whale-fluke mark, the tagline, the colour and type system an
 
 - independent headless pass (playwright-core over `file://`, desktop, reduced-motion and mobile contexts, 38 assertions): boot auto-dismisses, hero crossfade reveals, stat counters land, depth readout tracks scroll, all four miniatures interactive (filters, slab panel, sliders, FIRE maths, indicator toggles, block editing), zero console errors, no horizontal overflow at 1440px or 390px, footer links, boot skip, nav toggle and nav links all at 44px. Confirms the 28/07 particle and reduced-motion findings from real input
 - v1.2 fix: the mobile nav drawer covered its own toggle, the fixed-positioned drawer painted above the static button, so an open drawer could not be closed via the hamburger (proven from the true input path). Fixed by stacking the toggle at `position:relative; z-index:1` inside the header's stacking context, re-verified by real click with the drawer open, `aria-expanded` flips correctly
+
+### Verified 01/08/2026
+
+- v1.3 fix: the two in-content venture links ("Open Collectibles", "Open Journal") measured 39px high on desktop, under the 44px bar. Fixed by adding `min-height:44px; box-sizing:border-box` to `.pill-link` in `assets/style.css`. Re-measured via browser preview at 1280px: both pills now 44px. At 375px both remain 47.2px (mobile media query already passed, unaffected). No horizontal overflow at either width, zero console errors
 
 ## Conventions
 
